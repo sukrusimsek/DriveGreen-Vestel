@@ -22,5 +22,8 @@ extension LoginViewModel: LoginViewModelInterface {
     func viewDidLoad() {
         view?.configureVC()
         view?.configureStackView()
+        view?.configureMailTextField()
+        view?.configurePasswordTextField()
+        view?.configureSignInButton()
     }
 }

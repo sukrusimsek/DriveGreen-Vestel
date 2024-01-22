@@ -43,6 +43,8 @@
 		8D61609C2B5F03C700D4C219 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61609B2B5F03C700D4C219 /* SettingScreen.swift */; };
 		8D61609E2B5F03E600D4C219 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61609D2B5F03E600D4C219 /* SettingViewModel.swift */; };
 		8D6160A02B5F07ED00D4C219 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D61609F2B5F07ED00D4C219 /* GoogleService-Info.plist */; };
+		8D6160A22B5F0E5300D4C219 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A12B5F0E5300D4C219 /* UITextField+Ext.swift */; };
+		8D6160A42B5F1CD700D4C219 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A32B5F1CD700D4C219 /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		8D61609B2B5F03C700D4C219 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
 		8D61609D2B5F03E600D4C219 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		8D61609F2B5F07ED00D4C219 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D6160A12B5F0E5300D4C219 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		8D6160A32B5F1CD700D4C219 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +120,8 @@
 		8D6160472B5D2EA800D4C219 /* DriveGreen-Vestel */ = {
 			isa = PBXGroup;
 			children = (
-				8D6160962B5F01AF00D4C219 /* Core */,
 				8D6160952B5F01A700D4C219 /* Extensions */,
+				8D6160962B5F01AF00D4C219 /* Core */,
 				8D6160482B5D2EA800D4C219 /* AppDelegate.swift */,
 				8D61604A2B5D2EA800D4C219 /* SceneDelegate.swift */,
 				8D6160512B5D2EAA00D4C219 /* Assets.xcassets */,
@@ -131,6 +135,8 @@
 		8D6160952B5F01A700D4C219 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8D6160A12B5F0E5300D4C219 /* UITextField+Ext.swift */,
+				8D6160A32B5F1CD700D4C219 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -265,9 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6160A42B5F1CD700D4C219 /* UIView+Ext.swift in Sources */,
 				8D61609C2B5F03C700D4C219 /* SettingScreen.swift in Sources */,
 				8D61609E2B5F03E600D4C219 /* SettingViewModel.swift in Sources */,
 				8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */,
+				8D6160A22B5F0E5300D4C219 /* UITextField+Ext.swift in Sources */,
 				8D6160492B5D2EA800D4C219 /* AppDelegate.swift in Sources */,
 				8D61604B2B5D2EA800D4C219 /* SceneDelegate.swift in Sources */,
 				8D61609A2B5F03B200D4C219 /* LoginViewModel.swift in Sources */,
