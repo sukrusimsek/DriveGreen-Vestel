@@ -52,7 +52,8 @@ final class LoginScreen: UIViewController {
 
 extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     func configureVC() {
-        view.backgroundColor = .label
+        view.backgroundColor = UIColor(rgb: 0xE8D8C4)
+        signInButton.isEnabled = false
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
     }
@@ -63,8 +64,8 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
             emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
             passwordTextField.textColor = .placeholderText
             passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
-            emailTextField.addBottomBorder(height: 1,color: .placeholderText)
-            passwordTextField.addBottomBorder(height: 1,color: .placeholderText)
+//            emailTextField.addBottomBorder(color: .placeholderText)
+//            passwordTextField.addBottomBorder(color: .placeholderText)
         } else {
             //print("pass or mail not free")
         }
@@ -98,32 +99,61 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         ])
     }
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        //First control for isEmpty??
         if emailTextField.text == "" || passwordTextField.text == "" {
             signInButton.isEnabled = false
             signInButton.setTitleColor(.placeholderText, for: .normal)
+            signInButton.backgroundColor = .lightGray
+            
             if emailTextField.text.isEmailValid() {
-                //change colors to green
+                //change colors to green for email
                 emailTextField.textColor = .white
                 emailTextField.addBottomBorder(height: 1,color: .white)
                 emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .systemGreen)
                 
-                
-            } else {
-                //change colors to red
+            } else if !emailTextField.text.isEmailValid() {
+                //change colors to red for email
+                signInButton.isEnabled = false
                 emailTextField.textColor = .systemRed
-                emailTextField.addBottomBorder(height: 1,color: .systemRed)
+                if emailTextField.text == "" {
+                    emailTextField.addBottomBorder(height: 1,color: .white)
+                    emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
+                } else {
+                    emailTextField.addBottomBorder(height: 1,color: .systemRed)
+                }
                 emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .systemRed)
             }
-        } else {
-            signInButton.setTitleColor(.white, for: .normal)
+            
+        } else if !passwordTextField.text.isPasswordValid(passwordTextField.text!) { //change to wrong pass
+            signInButton.isEnabled = false
+            signInButton.setTitleColor(.placeholderText, for: .normal)
+            signInButton.backgroundColor = .lightGray
+            passwordTextField.textColor = .systemRed
+            passwordTextField.addBottomBorder(height: 1,color: .systemRed)
+            passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .systemRed)
+            
+
+        } else if passwordTextField.text.isPasswordValid(passwordTextField.text!) { //change to true pass
+            passwordTextField.textColor = .white
+            passwordTextField.addBottomBorder(height: 1,color: .white)
+            passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
             signInButton.isEnabled = true
+            signInButton.backgroundColor = UIColor(rgb: 0x9ADE7B)
+            signInButton.setTitleColor(.white, for: .normal)
+        }
+
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) { //Change bottom color when you don't have any char in text field.
+        if ((emailTextField.text?.isEmpty) != nil) {
+            emailTextField.addBottomBorder(color: .placeholderText)
+        }
+        if passwordTextField.text == "" {
+            passwordTextField.addBottomBorder(color: .placeholderText)
         }
     }
-
     func configureMailTextField() {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.delegate = self
-        signInButton.setTitleColor(.placeholderText, for: .normal)
         emailTextField.keyboardType = .emailAddress
         emailTextField.borderStyle = .none
         emailTextField.autocapitalizationType = .none
@@ -145,18 +175,16 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         passwordTextField.returnKeyType = .done
         passwordTextField.borderStyle = .none
         passwordTextField.placeholder = "Şifre"
-        passwordTextField.addBottomBorder(height: 1,color: .placeholderText)
-        if let myImage = UIImage(systemName: "lock") {
-            passwordTextField.withImage(direction: .Left, image: myImage, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
-        }
-        
+        passwordTextField.clearsOnBeginEditing = false
+        passwordTextField.addBottomBorder(color: .placeholderText)
+        passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
         passwordTextField.isSecureTextEntry = true
         stackViewForMailPass.addArrangedSubview(passwordTextField)
         passwordTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: stackViewForMailPass.widthAnchor).isActive = true
 
     }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) { //Click the textFields and its change the borderColor
         if textField == emailTextField {
             emailTextField.addBottomBorder(height: 1,color: .white)
         } else if textField == passwordTextField {
@@ -167,7 +195,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     func configureForgotPasswordButton() {
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         forgotPasswordButton.setTitle("Şifremi unuttum", for: .normal)
-        forgotPasswordButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
+        forgotPasswordButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
         forgotPasswordButton.backgroundColor = .clear
         
         forgotPasswordButton.setTitleColor(.white, for: .normal)
@@ -180,9 +208,11 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     func configureSignInButton() {
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.setTitle("Giriş Yap", for: .normal)
+        signInButton.setTitleColor(.placeholderText, for: .normal)
+        signInButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         signInButton.layer.cornerRadius = 25
         signInButton.backgroundColor = .lightGray
-
+        signInButton.addShadow(color: .black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 2)
         
         stackViewForButtons.addArrangedSubview(signInButton)
         signInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true

@@ -22,4 +22,25 @@ extension Optional where Wrapped == String {
         }
         return false
     }
+    func isPasswordValid(_ password: String) -> Bool {
+        // have to min 8 chars in pass
+        guard password.count >= 8 else {
+            return false
+        }
+        // Uppercased control
+        let uppercaseLetterRegex = ".*[A-Z]+.*"
+        let uppercaseLetterTest = NSPredicate(format:"SELF MATCHES %@", uppercaseLetterRegex)
+        guard uppercaseLetterTest.evaluate(with: password) else {
+            return false
+        }
+        // Special char control
+        let specialCharacterRegex = ".*[^A-Za-z0-9]+.*"
+        let specialCharacterTest = NSPredicate(format:"SELF MATCHES %@", specialCharacterRegex)
+        guard specialCharacterTest.evaluate(with: password) else {
+            return false
+        }
+        
+        // If passed the all control. The pass is good pass.
+        return true
+    }
 }
