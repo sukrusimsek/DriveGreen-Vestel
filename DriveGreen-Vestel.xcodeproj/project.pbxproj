@@ -45,6 +45,9 @@
 		8D6160A02B5F07ED00D4C219 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D61609F2B5F07ED00D4C219 /* GoogleService-Info.plist */; };
 		8D6160A22B5F0E5300D4C219 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A12B5F0E5300D4C219 /* UITextField+Ext.swift */; };
 		8D6160A42B5F1CD700D4C219 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A32B5F1CD700D4C219 /* UIView+Ext.swift */; };
+		8D6160A62B5FE7C700D4C219 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A52B5FE7C700D4C219 /* UIColor+Ext.swift */; };
+		8D6160A82B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A72B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift */; };
+		8D6160AA2B6043C700D4C219 /* String+Ext+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		8D61609F2B5F07ED00D4C219 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D6160A12B5F0E5300D4C219 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		8D6160A32B5F1CD700D4C219 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		8D6160A52B5FE7C700D4C219 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		8D6160A72B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext+BottomBorder.swift"; sourceTree = "<group>"; };
+		8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext+Validation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,9 @@
 			children = (
 				8D6160A12B5F0E5300D4C219 /* UITextField+Ext.swift */,
 				8D6160A32B5F1CD700D4C219 /* UIView+Ext.swift */,
+				8D6160A52B5FE7C700D4C219 /* UIColor+Ext.swift */,
+				8D6160A72B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift */,
+				8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -276,7 +285,10 @@
 				8D61609E2B5F03E600D4C219 /* SettingViewModel.swift in Sources */,
 				8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */,
 				8D6160A22B5F0E5300D4C219 /* UITextField+Ext.swift in Sources */,
+				8D6160AA2B6043C700D4C219 /* String+Ext+Validation.swift in Sources */,
 				8D6160492B5D2EA800D4C219 /* AppDelegate.swift in Sources */,
+				8D6160A82B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift in Sources */,
+				8D6160A62B5FE7C700D4C219 /* UIColor+Ext.swift in Sources */,
 				8D61604B2B5D2EA800D4C219 /* SceneDelegate.swift in Sources */,
 				8D61609A2B5F03B200D4C219 /* LoginViewModel.swift in Sources */,
 			);
