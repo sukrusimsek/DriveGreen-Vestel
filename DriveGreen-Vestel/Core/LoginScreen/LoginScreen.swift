@@ -19,6 +19,8 @@ protocol LoginScreenInterface: AnyObject {
     func configureOrLabel()
     func configureGoogleButton()
     func configureAppleButton()
+//    func configureQuestionLabelAboutAccount()
+//    func configureSignUpButton()
 }
 
 final class LoginScreen: UIViewController {
@@ -35,8 +37,12 @@ final class LoginScreen: UIViewController {
     private let signInWithGoogleButton = UIButton()
     private let signInWithAppleButton = ASAuthorizationAppleIDButton(type: .default, style: .white)
     private let signUpButton = UIButton()
-    let iconForAt = UIImage(systemName: "at")
-    let iconForLock = UIImage(systemName: "lock")
+    private let iconForAt = UIImage(systemName: "at")
+    private let iconForLock = UIImage(systemName: "lock")
+    private let iconPassEye = UIImage(systemName: "eye")
+    private let iconPassEyeSlash = UIImage(systemName: "eye.slash")
+    private let buttonForPass = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+    
 
     
     
@@ -109,7 +115,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
                 //change colors to green for email
                 emailTextField.textColor = .white
                 emailTextField.addBottomBorder(height: 1,color: .white)
-                emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .systemGreen)
+                emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
                 
             } else if !emailTextField.text.isEmailValid() {
                 //change colors to red for email
@@ -144,7 +150,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
 
     }
     func textFieldDidEndEditing(_ textField: UITextField) { //Change bottom color when you don't have any char in text field.
-        if ((emailTextField.text?.isEmpty) != nil) {
+        if emailTextField.text == "" {
             emailTextField.addBottomBorder(color: .placeholderText)
         }
         if passwordTextField.text == "" {
@@ -177,11 +183,30 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         passwordTextField.placeholder = "Şifre"
         passwordTextField.clearsOnBeginEditing = false
         passwordTextField.addBottomBorder(color: .placeholderText)
-        passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
+        passwordTextField.withImage(direction: .Left, image: iconForLock!, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
+        
+        buttonForPass.translatesAutoresizingMaskIntoConstraints = false
+        buttonForPass.addTarget(self, action: #selector(tappedEyeShowPassword), for: .touchUpInside)
+        buttonForPass.setImage(iconPassEyeSlash, for: .normal)
+        buttonForPass.tintColor = .white
+
+        passwordTextField.addSubview(buttonForPass)
+        NSLayoutConstraint.activate([
+            buttonForPass.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            buttonForPass.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor)
+        ])
+        
         passwordTextField.isSecureTextEntry = true
         stackViewForMailPass.addArrangedSubview(passwordTextField)
         passwordTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: stackViewForMailPass.widthAnchor).isActive = true
+
+    }
+    @objc func tappedEyeShowPassword() {
+        print("Tapped ShowPass")//Change the show and hide password button type.
+        passwordTextField.isSecureTextEntry.toggle()
+        let buttonImage = passwordTextField.isSecureTextEntry ? iconPassEyeSlash : iconPassEye
+        buttonForPass.setImage(buttonImage, for: .normal)
 
     }
     func textFieldDidBeginEditing(_ textField: UITextField) { //Click the textFields and its change the borderColor
