@@ -30,5 +30,7 @@ extension LoginViewModel: LoginViewModelInterface {
         view?.configureOrLabel()
         view?.configureGoogleButton()
         view?.configureAppleButton()
+        view?.configureSignUpButton()
+        view?.configureQuestionLabelAboutAccount()
     }
 }

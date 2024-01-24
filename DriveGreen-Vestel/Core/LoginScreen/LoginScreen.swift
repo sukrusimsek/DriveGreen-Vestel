@@ -19,16 +19,14 @@ protocol LoginScreenInterface: AnyObject {
     func configureOrLabel()
     func configureGoogleButton()
     func configureAppleButton()
-//    func configureQuestionLabelAboutAccount()
-//    func configureSignUpButton()
+    func configureQuestionLabelAboutAccount()
+    func configureSignUpButton()
 }
 
 final class LoginScreen: UIViewController {
     private let viewModel = LoginViewModel()
     private let stackViewForMailPass = UIStackView()
     private let stackViewForButtons = UIStackView()
-    
-    
     private let emailTextField = UITextField()
     private let passwordTextField = UITextField()
     private let forgotPasswordButton = UIButton()
@@ -36,13 +34,15 @@ final class LoginScreen: UIViewController {
     private let orLabel = UILabel()
     private let signInWithGoogleButton = UIButton()
     private let signInWithAppleButton = ASAuthorizationAppleIDButton(type: .default, style: .white)
-    private let signUpButton = UIButton()
     private let iconForAt = UIImage(systemName: "at")
     private let iconForLock = UIImage(systemName: "lock")
     private let iconPassEye = UIImage(systemName: "eye")
     private let iconPassEyeSlash = UIImage(systemName: "eye.slash")
     private let buttonForPass = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-    
+    private let signUpButton = UIButton()
+    private let questionForSignUp = UILabel()
+    private let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+
 
     
     
@@ -58,7 +58,15 @@ final class LoginScreen: UIViewController {
 
 extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     func configureVC() {
-        view.backgroundColor = UIColor(rgb: 0xE8D8C4)
+        backgroundImage.image = UIImage(named: "drivegreenback")
+        backgroundImage.contentMode = .scaleAspectFill
+        view.insertSubview(backgroundImage, at: 0)
+        let overlayView = UIView(frame: UIScreen.main.bounds)
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        view.insertSubview(overlayView, aboveSubview: backgroundImage)
+        
+        
+        
         signInButton.isEnabled = false
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
@@ -66,12 +74,10 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     @objc func handleTap() {
         view.endEditing(true)
         if emailTextField.text == "" && passwordTextField.text == "" {
-            emailTextField.textColor = .placeholderText
-            emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
-            passwordTextField.textColor = .placeholderText
-            passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
-//            emailTextField.addBottomBorder(color: .placeholderText)
-//            passwordTextField.addBottomBorder(color: .placeholderText)
+            emailTextField.textColor = .white
+            emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
+            passwordTextField.textColor = .white
+            passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
         } else {
             //print("pass or mail not free")
         }
@@ -144,17 +150,17 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
             passwordTextField.addBottomBorder(height: 1,color: .white)
             passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
             signInButton.isEnabled = true
-            signInButton.backgroundColor = UIColor(rgb: 0x9ADE7B)
+            signInButton.backgroundColor = UIColor(rgb: 0x8fc031)
             signInButton.setTitleColor(.white, for: .normal)
         }
 
     }
     func textFieldDidEndEditing(_ textField: UITextField) { //Change bottom color when you don't have any char in text field.
         if emailTextField.text == "" {
-            emailTextField.addBottomBorder(color: .placeholderText)
+            emailTextField.addBottomBorder(color: .white)
         }
         if passwordTextField.text == "" {
-            passwordTextField.addBottomBorder(color: .placeholderText)
+            passwordTextField.addBottomBorder(color: .white)
         }
     }
     func configureMailTextField() {
@@ -163,12 +169,10 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         emailTextField.keyboardType = .emailAddress
         emailTextField.borderStyle = .none
         emailTextField.autocapitalizationType = .none
-        emailTextField.placeholder = "E-Posta"
-
-       
-        emailTextField.addBottomBorder(height: 1, color: .placeholderText)
-        emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
-        
+        let attributedPlaceholderEmail = NSAttributedString(string: "E-Posta", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        emailTextField.attributedPlaceholder = attributedPlaceholderEmail
+        emailTextField.addBottomBorder(height: 1, color: .white)
+        emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
         stackViewForMailPass.addArrangedSubview(emailTextField)
         emailTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         emailTextField.widthAnchor.constraint(equalTo: stackViewForMailPass.widthAnchor).isActive = true
@@ -180,11 +184,11 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         passwordTextField.delegate = self
         passwordTextField.returnKeyType = .done
         passwordTextField.borderStyle = .none
-        passwordTextField.placeholder = "Şifre"
         passwordTextField.clearsOnBeginEditing = false
-        passwordTextField.addBottomBorder(color: .placeholderText)
-        passwordTextField.withImage(direction: .Left, image: iconForLock!, colorSeparator: .clear, colorBorder: .clear, tintColor: .placeholderText)
-        
+        passwordTextField.addBottomBorder(color: .white)
+        passwordTextField.withImage(direction: .Left, image: iconForLock!, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
+        let attributedPlaceholderPassword = NSAttributedString(string: "Şifre", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        passwordTextField.attributedPlaceholder = attributedPlaceholderPassword
         buttonForPass.translatesAutoresizingMaskIntoConstraints = false
         buttonForPass.addTarget(self, action: #selector(tappedEyeShowPassword), for: .touchUpInside)
         buttonForPass.setImage(iconPassEyeSlash, for: .normal)
@@ -203,7 +207,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
 
     }
     @objc func tappedEyeShowPassword() {
-        print("Tapped ShowPass")//Change the show and hide password button type.
+        //Change the show and hide password button type.
         passwordTextField.isSecureTextEntry.toggle()
         let buttonImage = passwordTextField.isSecureTextEntry ? iconPassEyeSlash : iconPassEye
         buttonForPass.setImage(buttonImage, for: .normal)
@@ -237,7 +241,6 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         signInButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         signInButton.layer.cornerRadius = 25
         signInButton.backgroundColor = .lightGray
-        signInButton.addShadow(color: .black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 2)
         
         stackViewForButtons.addArrangedSubview(signInButton)
         signInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -279,8 +282,32 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         signInWithAppleButton.addTarget(self, action: #selector(tappedSignInWithApple), for: .touchUpInside)
 
     }
-    
-    
+    func configureSignUpButton() {
+        signUpButton.translatesAutoresizingMaskIntoConstraints = false
+        signUpButton.setTitle("Kayıt olun", for: .normal)
+        signUpButton.backgroundColor = .clear
+        signUpButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        signUpButton.setTitleColor(UIColor(rgb: 0x8fc031), for: .normal)
+        view.addSubview(signUpButton)
+        signUpButton.addTarget(self, action: #selector(tappedSignUp), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            signUpButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+        ])
+    }
+    func configureQuestionLabelAboutAccount() {
+        questionForSignUp.translatesAutoresizingMaskIntoConstraints = false
+        questionForSignUp.text = "Hesabınız yok mu?"
+        questionForSignUp.textColor = .white
+        questionForSignUp.textAlignment = .center
+        questionForSignUp.font = .systemFont(ofSize: 12, weight: .semibold)
+        view.addSubview(questionForSignUp)
+        NSLayoutConstraint.activate([
+            questionForSignUp.bottomAnchor.constraint(equalTo: signUpButton.topAnchor,constant: -5),
+            questionForSignUp.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
     
     
     
@@ -302,6 +329,9 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     }
     @objc func tappedForgotPassButton() {
         print("Forgot button tapped")
+    }
+    @objc func tappedSignUp() {
+        print("tapped sign up")
     }
 }
 
