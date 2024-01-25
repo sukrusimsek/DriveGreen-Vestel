@@ -17,6 +17,10 @@ final class SettingViewModel {
 
 extension SettingViewModel: SettingViewModelInterface {
     func viewDidLoad() {
-        
+        view?.configureVC()
+        view?.configurePDFView()
+        view?.configureShowPages()
+        view?.configureAcceptButtons()
+        view?.configureGoButton()
     }
 }

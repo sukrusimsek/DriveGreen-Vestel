@@ -48,6 +48,8 @@
 		8D6160A62B5FE7C700D4C219 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A52B5FE7C700D4C219 /* UIColor+Ext.swift */; };
 		8D6160A82B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A72B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift */; };
 		8D6160AA2B6043C700D4C219 /* String+Ext+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */; };
+		8D6160AC2B62E31000D4C219 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8D6160AB2B62E31000D4C219 /* sample.pdf */; };
+		8D6160AE2B62F2B600D4C219 /* UIView+Ext+Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160AD2B62F2B600D4C219 /* UIView+Ext+Pages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		8D6160A52B5FE7C700D4C219 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		8D6160A72B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext+BottomBorder.swift"; sourceTree = "<group>"; };
 		8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext+Validation.swift"; sourceTree = "<group>"; };
+		8D6160AB2B62E31000D4C219 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
+		8D6160AD2B62F2B600D4C219 /* UIView+Ext+Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext+Pages.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 				8D6160532B5D2EAA00D4C219 /* LaunchScreen.storyboard */,
 				8D6160562B5D2EAA00D4C219 /* Info.plist */,
 				8D61609F2B5F07ED00D4C219 /* GoogleService-Info.plist */,
+				8D6160AB2B62E31000D4C219 /* sample.pdf */,
 			);
 			path = "DriveGreen-Vestel";
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				8D6160A52B5FE7C700D4C219 /* UIColor+Ext.swift */,
 				8D6160A72B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift */,
 				8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */,
+				8D6160AD2B62F2B600D4C219 /* UIView+Ext+Pages.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6160AC2B62E31000D4C219 /* sample.pdf in Resources */,
 				8D6160A02B5F07ED00D4C219 /* GoogleService-Info.plist in Resources */,
 				8D6160552B5D2EAA00D4C219 /* LaunchScreen.storyboard in Resources */,
 				8D6160522B5D2EAA00D4C219 /* Assets.xcassets in Resources */,
@@ -281,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D6160A42B5F1CD700D4C219 /* UIView+Ext.swift in Sources */,
+				8D6160AE2B62F2B600D4C219 /* UIView+Ext+Pages.swift in Sources */,
 				8D61609C2B5F03C700D4C219 /* SettingScreen.swift in Sources */,
 				8D61609E2B5F03E600D4C219 /* SettingViewModel.swift in Sources */,
 				8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */,

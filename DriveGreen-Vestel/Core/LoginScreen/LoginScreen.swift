@@ -189,6 +189,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         passwordTextField.withImage(direction: .Left, image: iconForLock!, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
         let attributedPlaceholderPassword = NSAttributedString(string: "Şifre", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         passwordTextField.attributedPlaceholder = attributedPlaceholderPassword
+        
         buttonForPass.translatesAutoresizingMaskIntoConstraints = false
         buttonForPass.addTarget(self, action: #selector(tappedEyeShowPassword), for: .touchUpInside)
         buttonForPass.setImage(iconPassEyeSlash, for: .normal)
@@ -332,6 +333,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     }
     @objc func tappedSignUp() {
         print("tapped sign up")
+        navigationController?.pushViewController(SettingScreen(), animated: true)
     }
 }
 

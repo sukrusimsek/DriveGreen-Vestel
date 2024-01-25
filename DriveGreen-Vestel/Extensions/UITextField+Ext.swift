@@ -27,6 +27,7 @@ enum Direction {
     imageView.frame = CGRect(x: 2.0, y: 10.0, width: 24.0, height: 24.0)
     view.addSubview(imageView)
 
+        
     let seperatorView = UIView()
     seperatorView.backgroundColor = colorSeparator
     mainView.addSubview(seperatorView)
