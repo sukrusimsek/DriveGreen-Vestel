@@ -207,5 +207,6 @@ extension SettingScreen: SettingScreenInterface {
     }
     @objc func tappedContinueButton() {
         print("taipped continue")
+        navigationController?.pushViewController(SignUpSecondScreen(), animated: true)
     }
 }
