@@ -26,5 +26,10 @@ extension SignUpSecondViewModel: SignUpSecondViewModelInterface {
         view?.configureLabelForPass()
         view?.configurePasswordTextField()
         view?.configureCountries()
+        view?.configureSignInButton()
+        view?.configureQuestionLabelAboutAccount()
+        view?.configureContinueButton()
+
+
     }
 }

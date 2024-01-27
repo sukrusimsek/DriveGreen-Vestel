@@ -17,6 +17,9 @@ protocol SignUpSecondScreenInterface: AnyObject {
     func configureLabelForPass()
     func configurePasswordTextField()
     func configureCountries()
+    func configureContinueButton()
+    func configureSignInButton()
+    func configureQuestionLabelAboutAccount()
 }
 
 final class SignUpSecondScreen: UIViewController {
@@ -29,7 +32,6 @@ final class SignUpSecondScreen: UIViewController {
     let iconForLock = UIImage(systemName: "lock")
     let iconForCountry = UIImage(systemName: "globe")
     let data = ["ABD" ,"Almanya", "Andorra","Türkiye","Belçika","Hollanda","İngiltere","Japonya","Singapur","Yunanistan","İsviçre"]
-
     private let viewForPageShowStackView = UIStackView()
     private let labelForUpper = UILabel()
     private let nameTextField = UITextField()
@@ -38,7 +40,11 @@ final class SignUpSecondScreen: UIViewController {
     private let labelForAboutPass = UILabel()
     private let passwordTextField = UITextField()
     private let buttonForPass = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+    private let countriesBackTextField = UITextField()
     private let countriesPickerView = UIPickerView()
+    private let continueButton = UIButton()
+    private let signInButton = UIButton()
+    private let questionForSignIn = UILabel()
 
 
     override func viewDidLoad() {
@@ -222,16 +228,29 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
     
     
     func configureCountries() {
-        countriesPickerView.delegate = self
-        countriesPickerView.dataSource = self
+        countriesBackTextField.translatesAutoresizingMaskIntoConstraints = false
         countriesPickerView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(countriesPickerView)
+        countriesBackTextField.delegate = self
+        countriesPickerView.delegate = self
+        countriesPickerView.dataSource = self
+        
+        countriesBackTextField.returnKeyType = .done
+        countriesBackTextField.borderStyle = .none
+        countriesBackTextField.addBottomBorder(height: 1,color: .lightText)
+        countriesBackTextField.withImage(direction: .Left, image: iconForCountry!, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
+        let attributedPlaceholderCountry = NSAttributedString(string: "Ülke", attributes: [NSAttributedString.Key
+            .foregroundColor: UIColor.white])
+        countriesBackTextField.attributedPlaceholder = attributedPlaceholderCountry
+        
+        
+        countriesBackTextField.inputView = countriesPickerView
+        view.addSubview(countriesBackTextField)
         NSLayoutConstraint.activate([
-            countriesPickerView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
-            countriesPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10),
-            countriesPickerView.widthAnchor.constraint(equalToConstant: view.frame.size.width - 20),
-            countriesPickerView.heightAnchor.constraint(equalToConstant: 30)
+            countriesBackTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+            countriesBackTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10),
+            countriesBackTextField.widthAnchor.constraint(equalToConstant: view.frame.size.width - 20),
+            countriesBackTextField.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -243,5 +262,61 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return data[row]
     }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        countriesBackTextField.text = data[row]
+        countriesBackTextField.textColor = .white
+        countriesBackTextField.resignFirstResponder()
+    }
     
+    func configureSignInButton() {
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        signInButton.setTitle("Giriş yap", for: .normal)
+        signInButton.backgroundColor = .clear
+        signInButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        signInButton.setTitleColor(UIColor(rgb: 0x8fc031), for: .normal)
+        view.addSubview(signInButton)
+        signInButton.addTarget(self, action: #selector(tappedSignIn), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            signInButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+        ])
+    }
+    
+    func configureQuestionLabelAboutAccount() {
+        questionForSignIn.translatesAutoresizingMaskIntoConstraints = false
+        questionForSignIn.text = "Hesabın zaten var mı?"
+        questionForSignIn.textColor = .white
+        questionForSignIn.textAlignment = .center
+        questionForSignIn.font = .systemFont(ofSize: 12, weight: .semibold)
+        view.addSubview(questionForSignIn)
+        NSLayoutConstraint.activate([
+            questionForSignIn.bottomAnchor.constraint(equalTo: signInButton.topAnchor,constant: -5),
+            questionForSignIn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+    }
+    func configureContinueButton() {
+        continueButton.translatesAutoresizingMaskIntoConstraints = false
+        continueButton.setTitle("İleri", for: .normal)
+        continueButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        continueButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        continueButton.setTitleColor(.lightText, for: .normal)
+        continueButton.layer.cornerRadius = 25
+        continueButton.isEnabled = false
+        continueButton.addTarget(self, action: #selector(tappedContinueButton), for: .touchUpInside)
+        view.addSubview(continueButton)
+        NSLayoutConstraint.activate([
+            continueButton.bottomAnchor.constraint(equalTo: questionForSignIn.topAnchor,constant: -25),
+            continueButton.widthAnchor.constraint(equalToConstant: view.frame.size.width - 40),
+            continueButton.heightAnchor.constraint(equalToConstant: 50),
+            continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+
+    }
+    @objc func tappedContinueButton() {
+        print("tapped continue")
+    }
+    @objc func tappedSignIn() {
+        print("sign in")
+    }
 }
