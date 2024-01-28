@@ -327,6 +327,14 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
     }
     @objc func tappedContinueButton() {
         print("tapped continue")
+        navigationController?.pushViewController(SignUpThirdScreen(), animated: true)
+        
+        let alertController = UIAlertController(title: "Geçiş Alert", message: "Aktivasyon maili gönderildi.", preferredStyle: .alert)
+        self.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
     }
     @objc func tappedSignIn() {
         if let viewControllers = navigationController?.viewControllers {
@@ -354,19 +362,23 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
             emailTextField.addBottomBorder(height: 1.2,color: .lightText)
             emailTextField.textColor = .white
             emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
-        } else if textField == passwordTextField && !passwordTextFieldTapped {
+        }
+        if textField == passwordTextField && !passwordTextFieldTapped {
             passwordTextField.addBottomBorder(height: 1.2,color: .lightText)
             passwordTextField.textColor = .white
             passwordTextFieldTapped = true
             passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
-        } else if textField == surnameTextField && !surnameTextFieldTapped {
+        }
+        if textField == surnameTextField && !surnameTextFieldTapped {
             surnameTextField.addBottomBorder(height: 1.2,color: .lightText)
             passwordTextFieldTapped = true
             surnameTextField.textColor = .white
-        } else if textField == countriesBackTextField && !countryTextFieldTapped {
+        }
+        if textField == countriesBackTextField && !countryTextFieldTapped {
             countriesBackTextField.addBottomBorder(height: 1.2,color: .lightText)
             countryTextFieldTapped = true
-        } else if textField == nameTextField && !nameTextFieldTapped {
+        }
+        if textField == nameTextField && !nameTextFieldTapped {
             nameTextField.addBottomBorder(height: 1.2,color: .lightText)
             nameTextField.textColor = .white
             nameTextFieldTapped = true
