@@ -31,6 +31,7 @@ final class SignUpSecondScreen: UIViewController {
     let iconPassEyeSlash = UIImage(systemName: "eye.slash")
     let iconForLock = UIImage(systemName: "lock")
     let iconForCountry = UIImage(systemName: "globe")
+    private let buttonForPass = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
     let data = ["ABD" ,"Almanya", "Andorra","Türkiye","Belçika","Hollanda","İngiltere","Japonya","Singapur","Yunanistan","İsviçre"]
     private let viewForPageShowStackView = UIStackView()
     private let labelForUpper = UILabel()
@@ -39,14 +40,17 @@ final class SignUpSecondScreen: UIViewController {
     private let emailTextField = UITextField()
     private let labelForAboutPass = UILabel()
     private let passwordTextField = UITextField()
-    private let buttonForPass = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
     private let countriesBackTextField = UITextField()
     private let countriesPickerView = UIPickerView()
     private let continueButton = UIButton()
     private let signInButton = UIButton()
     private let questionForSignIn = UILabel()
-
-
+    var emailTextFieldTapped = false
+    var nameTextFieldTapped = false
+    var surnameTextFieldTapped = false
+    var passwordTextFieldTapped = false
+    var countryTextFieldTapped = false
+    var selectedValue: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.view = self
@@ -65,9 +69,10 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.title = "Kayıt Olun"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
         view.backgroundColor = UIColor(rgb: 0x444444)
+        
     }
+
     @objc func tappedBackButton() {
         navigationController?.popViewController(animated: true)
     }
@@ -120,7 +125,7 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
         let attributedPlaceholderName = NSAttributedString(string: "İsim", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         nameTextField.attributedPlaceholder = attributedPlaceholderName
         nameTextField.addBottomBorder(height: 1, color: .lightText)
-        nameTextField.withImage(direction: .Left, image: iconForAt!, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
+        nameTextField.withImage(direction: .Left, image: iconForName!, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
         view.addSubview(nameTextField)
         NSLayoutConstraint.activate([
             nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10),
@@ -196,6 +201,7 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
         passwordTextField.returnKeyType = .done
         passwordTextField.borderStyle = .none
         passwordTextField.clearsOnBeginEditing = false
+        passwordTextField.textColor = .white
         passwordTextField.addBottomBorder(height: 1,color: .lightText)
         passwordTextField.withImage(direction: .Left, image: iconForLock!, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
         let attributedPlaceholderPassword = NSAttributedString(string: "Şifre", attributes: [NSAttributedString.Key
@@ -206,7 +212,7 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
         buttonForPass.addTarget(self, action: #selector(tappedEyeShowPassword), for: .touchUpInside)
         buttonForPass.setImage(iconPassEyeSlash, for: .normal)
         buttonForPass.tintColor = .lightText
-
+        
         passwordTextField.addSubview(buttonForPass)
         NSLayoutConstraint.activate([
             buttonForPass.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
@@ -219,11 +225,14 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
             passwordTextField.topAnchor.constraint(equalTo: labelForAboutPass.bottomAnchor, constant: 15),
             passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.size.width - 20),
             passwordTextField.heightAnchor.constraint(equalToConstant: 30)
-
+            
         ])
     }
     @objc func tappedEyeShowPassword() {
-        print("show pass")
+        //Change the show and hide password button type.
+        passwordTextField.isSecureTextEntry.toggle()
+        let buttonImage = passwordTextField.isSecureTextEntry ? iconPassEyeSlash : iconPassEye
+        buttonForPass.setImage(buttonImage, for: .normal)
     }
     
     
@@ -253,7 +262,7 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
             countriesBackTextField.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in i: UIPickerView) -> Int {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -263,6 +272,7 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
         return data[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedValue = data[row]
         countriesBackTextField.text = data[row]
         countriesBackTextField.textColor = .white
         countriesBackTextField.resignFirstResponder()
@@ -302,6 +312,8 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
         continueButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         continueButton.setTitleColor(.lightText, for: .normal)
         continueButton.layer.cornerRadius = 25
+        continueButton.layer.borderWidth = 1.5
+        continueButton.layer.borderColor = UIColor(rgb: 0x607274).cgColor
         continueButton.isEnabled = false
         continueButton.addTarget(self, action: #selector(tappedContinueButton), for: .touchUpInside)
         view.addSubview(continueButton)
@@ -311,12 +323,81 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
             continueButton.heightAnchor.constraint(equalToConstant: 50),
             continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
-
+        
     }
     @objc func tappedContinueButton() {
         print("tapped continue")
     }
     @objc func tappedSignIn() {
-        print("sign in")
+        if let viewControllers = navigationController?.viewControllers {
+            if viewControllers.count >= 3 {
+                let targetViewController = viewControllers[viewControllers.count - 3]
+                navigationController?.popToViewController(targetViewController, animated: true)
+            }
+        }
+    }
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if nameTextField.text != "" && emailTextField.text.isEmailValid() && surnameTextField.text != "" && passwordTextField.text.isPasswordValid(passwordTextField.text!) && selectedValue != nil{
+            continueButton.isEnabled = true
+            continueButton.setTitleColor(.white, for: .normal)
+            continueButton.layer.borderColor = UIColor(rgb: 0x8fc031).cgColor
+        } else {
+            continueButton.isEnabled = false
+            continueButton.setTitleColor(.lightText, for: .normal)
+            continueButton.layer.borderColor = UIColor(rgb: 0x607274).cgColor
+
+        }
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTextField && !emailTextFieldTapped {
+            emailTextFieldTapped = true
+            emailTextField.addBottomBorder(height: 1.2,color: .lightText)
+            emailTextField.textColor = .white
+            emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
+        } else if textField == passwordTextField && !passwordTextFieldTapped {
+            passwordTextField.addBottomBorder(height: 1.2,color: .lightText)
+            passwordTextField.textColor = .white
+            passwordTextFieldTapped = true
+            passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
+        } else if textField == surnameTextField && !surnameTextFieldTapped {
+            surnameTextField.addBottomBorder(height: 1.2,color: .lightText)
+            passwordTextFieldTapped = true
+            surnameTextField.textColor = .white
+        } else if textField == countriesBackTextField && !countryTextFieldTapped {
+            countriesBackTextField.addBottomBorder(height: 1.2,color: .lightText)
+            countryTextFieldTapped = true
+        } else if textField == nameTextField && !nameTextFieldTapped {
+            nameTextField.addBottomBorder(height: 1.2,color: .lightText)
+            nameTextField.textColor = .white
+            nameTextFieldTapped = true
+            nameTextField.withImage(direction: .Left, image: iconForName ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
+            
+        }
+        
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField && emailTextFieldTapped {
+            emailTextFieldTapped = false
+            emailTextField.addBottomBorder()
+            emailTextField.withImage(direction: .Left, image: iconForAt ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
+        } else if textField == nameTextField && nameTextFieldTapped {
+            nameTextFieldTapped = false
+            nameTextField.addBottomBorder()
+            nameTextField.withImage(direction: .Left, image: iconForName ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
+        } else if textField == surnameTextField && surnameTextFieldTapped {
+            surnameTextField.addBottomBorder()
+            surnameTextFieldTapped = false
+            
+        } else if textField == passwordTextField && passwordTextFieldTapped{
+            passwordTextField.addBottomBorder()
+            passwordTextFieldTapped = false
+            passwordTextField.withImage(direction: .Left, image: iconForLock ?? .add, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
+            
+        } else if textField == countriesBackTextField && countryTextFieldTapped {
+            countryTextFieldTapped = false
+            countriesBackTextField.addBottomBorder()
+            countriesBackTextField.withImage(direction: .Left, image: iconForCountry ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .lightText)
+        }
     }
 }
+

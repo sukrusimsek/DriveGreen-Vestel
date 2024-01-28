@@ -64,9 +64,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         let overlayView = UIView(frame: UIScreen.main.bounds)
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         view.insertSubview(overlayView, aboveSubview: backgroundImage)
-        
-        
-        
+
         signInButton.isEnabled = false
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
@@ -157,10 +155,10 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) { //Change bottom color when you don't have any char in text field.
         if emailTextField.text == "" {
-            emailTextField.addBottomBorder(color: .white)
+            emailTextField.addBottomBorder(height: 1,color: .white)
         }
         if passwordTextField.text == "" {
-            passwordTextField.addBottomBorder(color: .white)
+            passwordTextField.addBottomBorder(height: 1,color: .white)
         }
     }
     func configureMailTextField() {
@@ -216,9 +214,9 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) { //Click the textFields and its change the borderColor
         if textField == emailTextField {
-            emailTextField.addBottomBorder(height: 1,color: .white)
+            emailTextField.addBottomBorder(height: 1.2,color: .white)
         } else if textField == passwordTextField {
-            passwordTextField.addBottomBorder(height: 1,color: .white)
+            passwordTextField.addBottomBorder(height: 1.2,color: .white)
         }
         
     }
