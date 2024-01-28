@@ -41,6 +41,11 @@ extension SignUpThirdScreen: SignUpThirdScreenInterface {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         view.backgroundColor = UIColor(rgb: 0x444444)
         
+        //Fake accept for email activation code
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3 ) {
+            self.navigationController?.pushViewController(SignUpFourthScreen(), animated: true)
+        }
+        
     }
     @objc func tappedBackButton() {
         if let viewControllers = navigationController?.viewControllers {
@@ -138,9 +143,7 @@ extension SignUpThirdScreen: SignUpThirdScreenInterface {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5 ) {
             alertController.dismiss(animated: true, completion: nil)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2 ) {
-            //go to new page
-        }
+        
     }
     
 }

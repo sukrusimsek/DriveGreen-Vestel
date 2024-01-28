@@ -54,6 +54,8 @@
 		8D6160B32B657E7900D4C219 /* SignUpSecondScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160B22B657E7900D4C219 /* SignUpSecondScreen.swift */; };
 		8D6160B62B66E41000D4C219 /* SignUpThirdScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160B52B66E41000D4C219 /* SignUpThirdScreen.swift */; };
 		8D6160B82B66E42300D4C219 /* SignUpThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160B72B66E42300D4C219 /* SignUpThirdViewModel.swift */; };
+		8D6160BB2B67044300D4C219 /* SignUpFourthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160BA2B67044300D4C219 /* SignUpFourthScreen.swift */; };
+		8D6160BD2B67047A00D4C219 /* SignUpFourthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160BC2B67047A00D4C219 /* SignUpFourthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,8 @@
 		8D6160B22B657E7900D4C219 /* SignUpSecondScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSecondScreen.swift; sourceTree = "<group>"; };
 		8D6160B52B66E41000D4C219 /* SignUpThirdScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpThirdScreen.swift; sourceTree = "<group>"; };
 		8D6160B72B66E42300D4C219 /* SignUpThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpThirdViewModel.swift; sourceTree = "<group>"; };
+		8D6160BA2B67044300D4C219 /* SignUpFourthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFourthScreen.swift; sourceTree = "<group>"; };
+		8D6160BC2B67047A00D4C219 /* SignUpFourthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFourthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 		8D6160962B5F01AF00D4C219 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8D6160B92B67028E00D4C219 /* SignUpFourthScreen */,
 				8D6160B42B66E3E900D4C219 /* SignUpThirdScreen */,
 				8D6160AF2B657DEA00D4C219 /* SignUpSeconScreen */,
 				8D6160972B5F01B300D4C219 /* LoginScreen */,
@@ -209,6 +214,15 @@
 				8D6160B72B66E42300D4C219 /* SignUpThirdViewModel.swift */,
 			);
 			path = SignUpThirdScreen;
+			sourceTree = "<group>";
+		};
+		8D6160B92B67028E00D4C219 /* SignUpFourthScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8D6160BA2B67044300D4C219 /* SignUpFourthScreen.swift */,
+				8D6160BC2B67047A00D4C219 /* SignUpFourthViewModel.swift */,
+			);
+			path = SignUpFourthScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,8 +335,10 @@
 				8D6160AE2B62F2B600D4C219 /* UIView+Ext+Pages.swift in Sources */,
 				8D61609C2B5F03C700D4C219 /* SettingScreen.swift in Sources */,
 				8D61609E2B5F03E600D4C219 /* SettingViewModel.swift in Sources */,
+				8D6160BD2B67047A00D4C219 /* SignUpFourthViewModel.swift in Sources */,
 				8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */,
 				8D6160A22B5F0E5300D4C219 /* UITextField+Ext.swift in Sources */,
+				8D6160BB2B67044300D4C219 /* SignUpFourthScreen.swift in Sources */,
 				8D6160B32B657E7900D4C219 /* SignUpSecondScreen.swift in Sources */,
 				8D6160AA2B6043C700D4C219 /* String+Ext+Validation.swift in Sources */,
 				8D6160492B5D2EA800D4C219 /* AppDelegate.swift in Sources */,
