@@ -148,7 +148,10 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
             passwordTextField.addBottomBorder(height: 1,color: .white)
             passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .white)
             signInButton.isEnabled = true
+            signInButton.layer.cornerRadius = 25
+            signInButton.layer.masksToBounds = true
             signInButton.backgroundColor = UIColor(rgb: 0x8fc031)
+            signInButton.applyGradient(colors: [UIColor(rgb: 0x8fc031), UIColor(rgb: 0x5f840f)], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y: 1.0))
             signInButton.setTitleColor(.white, for: .normal)
         }
 

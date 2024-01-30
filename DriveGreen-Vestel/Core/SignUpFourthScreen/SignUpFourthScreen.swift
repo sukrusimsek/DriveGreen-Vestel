@@ -97,12 +97,16 @@ extension SignUpFourthScreen: SignUpFourthScreenInterface {
     }
     func configureStartUseAppButton() {
         buttonForGoToHomePage.translatesAutoresizingMaskIntoConstraints = false
+
         
         buttonForGoToHomePage.setTitle("Uygulamayı kullanmaya başla", for: .normal)
-        buttonForGoToHomePage.backgroundColor = UIColor(rgb: 0x8fc031)
-        buttonForGoToHomePage.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        buttonForGoToHomePage.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
+        buttonForGoToHomePage.frame = CGRect(x: 0, y: 0, width: view.frame.size.width - 40, height: 50)
         buttonForGoToHomePage.setTitleColor(.white, for: .normal)
         buttonForGoToHomePage.layer.cornerRadius = 25
+        buttonForGoToHomePage.layer.masksToBounds = true
+        buttonForGoToHomePage.applyGradient(colors: [UIColor(rgb: 0x8fc031), UIColor(rgb: 0x5f840f)], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y: 1.0))
+
         buttonForGoToHomePage.addTarget(self, action: #selector(tappedUseAppButton), for: .touchUpInside)
         view.addSubview(buttonForGoToHomePage)
         NSLayoutConstraint.activate([

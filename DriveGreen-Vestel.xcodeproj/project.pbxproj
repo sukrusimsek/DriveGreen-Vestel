@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D0801062B697F3400975C6A /* UIView+Ext+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0801052B697F3400975C6A /* UIView+Ext+Gradient.swift */; };
 		8D6160492B5D2EA800D4C219 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160482B5D2EA800D4C219 /* AppDelegate.swift */; };
 		8D61604B2B5D2EA800D4C219 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61604A2B5D2EA800D4C219 /* SceneDelegate.swift */; };
 		8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61604C2B5D2EA800D4C219 /* LoginScreen.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D0801052B697F3400975C6A /* UIView+Ext+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext+Gradient.swift"; sourceTree = "<group>"; };
 		8D6160452B5D2EA800D4C219 /* DriveGreen-Vestel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DriveGreen-Vestel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D6160482B5D2EA800D4C219 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D61604A2B5D2EA800D4C219 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				8D6160A72B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift */,
 				8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */,
 				8D6160AD2B62F2B600D4C219 /* UIView+Ext+Pages.swift */,
+				8D0801052B697F3400975C6A /* UIView+Ext+Gradient.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				8D61609E2B5F03E600D4C219 /* SettingViewModel.swift in Sources */,
 				8D6160BD2B67047A00D4C219 /* SignUpFourthViewModel.swift in Sources */,
 				8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */,
+				8D0801062B697F3400975C6A /* UIView+Ext+Gradient.swift in Sources */,
 				8D6160A22B5F0E5300D4C219 /* UITextField+Ext.swift in Sources */,
 				8D6160BB2B67044300D4C219 /* SignUpFourthScreen.swift in Sources */,
 				8D6160B32B657E7900D4C219 /* SignUpSecondScreen.swift in Sources */,
