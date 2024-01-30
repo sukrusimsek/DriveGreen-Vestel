@@ -8,6 +8,8 @@
 import UIKit
 import AuthenticationServices
 import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
 
 protocol LoginScreenInterface: AnyObject {
     func configureVC()
@@ -330,6 +332,37 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     }
     @objc func tappedSignInWithGoogle() {
         print("Google ile giriş yap tapped")
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+                // Create Google Sign In configuration object.
+                let config = GIDConfiguration(clientID: clientID)
+                // Start the sign in flow!
+                GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+                    
+                    if let error = error {
+                        // ...
+                        return
+                    }
+                    
+                    guard
+                        let authentication = user?.authentication,
+                        let idToken = authentication.idToken
+                    else {
+                        return
+                    }
+                    
+                    let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                                   accessToken: authentication.accessToken)
+                    
+                    Auth.auth().signIn(with: credential) { authResult, error in
+                                    if error != nil {
+                                        
+                                        print("error")
+                                    }else {
+                                        self.navigationController?.pushViewController(HomeScreen(), animated: true)
+                                        
+                                    }
+                                }
+                }
     }
     @objc func tappedSignInWithApple() {
         print("Apple ile Giriş Yap tapped")
