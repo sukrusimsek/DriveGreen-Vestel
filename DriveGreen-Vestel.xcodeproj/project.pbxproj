@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8D0801062B697F3400975C6A /* UIView+Ext+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0801052B697F3400975C6A /* UIView+Ext+Gradient.swift */; };
+		8D0801082B69935700975C6A /* UIViewController+Ext+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0801072B69935700975C6A /* UIViewController+Ext+Alert.swift */; };
+		8D08010B2B6995C700975C6A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08010A2B6995C700975C6A /* HomeScreen.swift */; };
+		8D08010D2B6995D600975C6A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08010C2B6995D600975C6A /* HomeViewModel.swift */; };
 		8D6160492B5D2EA800D4C219 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160482B5D2EA800D4C219 /* AppDelegate.swift */; };
 		8D61604B2B5D2EA800D4C219 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61604A2B5D2EA800D4C219 /* SceneDelegate.swift */; };
 		8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61604C2B5D2EA800D4C219 /* LoginScreen.swift */; };
@@ -61,6 +64,9 @@
 
 /* Begin PBXFileReference section */
 		8D0801052B697F3400975C6A /* UIView+Ext+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext+Gradient.swift"; sourceTree = "<group>"; };
+		8D0801072B69935700975C6A /* UIViewController+Ext+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext+Alert.swift"; sourceTree = "<group>"; };
+		8D08010A2B6995C700975C6A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		8D08010C2B6995D600975C6A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8D6160452B5D2EA800D4C219 /* DriveGreen-Vestel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DriveGreen-Vestel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D6160482B5D2EA800D4C219 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D61604A2B5D2EA800D4C219 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +131,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D0801092B69959300975C6A /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8D08010A2B6995C700975C6A /* HomeScreen.swift */,
+				8D08010C2B6995D600975C6A /* HomeViewModel.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
 		8D61603C2B5D2EA800D4C219 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +182,7 @@
 				8D6160A92B6043C700D4C219 /* String+Ext+Validation.swift */,
 				8D6160AD2B62F2B600D4C219 /* UIView+Ext+Pages.swift */,
 				8D0801052B697F3400975C6A /* UIView+Ext+Gradient.swift */,
+				8D0801072B69935700975C6A /* UIViewController+Ext+Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +190,7 @@
 		8D6160962B5F01AF00D4C219 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8D0801092B69959300975C6A /* HomeScreen */,
 				8D6160B92B67028E00D4C219 /* SignUpFourthScreen */,
 				8D6160B42B66E3E900D4C219 /* SignUpThirdScreen */,
 				8D6160AF2B657DEA00D4C219 /* SignUpSeconScreen */,
@@ -333,7 +350,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D6160A42B5F1CD700D4C219 /* UIView+Ext.swift in Sources */,
+				8D08010D2B6995D600975C6A /* HomeViewModel.swift in Sources */,
 				8D6160B12B657E2800D4C219 /* SignUpSecondViewModel.swift in Sources */,
+				8D08010B2B6995C700975C6A /* HomeScreen.swift in Sources */,
 				8D6160B82B66E42300D4C219 /* SignUpThirdViewModel.swift in Sources */,
 				8D6160AE2B62F2B600D4C219 /* UIView+Ext+Pages.swift in Sources */,
 				8D61609C2B5F03C700D4C219 /* SettingScreen.swift in Sources */,
@@ -350,6 +369,7 @@
 				8D6160A82B5FF88800D4C219 /* UITextField+Ext+BottomBorder.swift in Sources */,
 				8D6160A62B5FE7C700D4C219 /* UIColor+Ext.swift in Sources */,
 				8D61604B2B5D2EA800D4C219 /* SceneDelegate.swift in Sources */,
+				8D0801082B69935700975C6A /* UIViewController+Ext+Alert.swift in Sources */,
 				8D61609A2B5F03B200D4C219 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

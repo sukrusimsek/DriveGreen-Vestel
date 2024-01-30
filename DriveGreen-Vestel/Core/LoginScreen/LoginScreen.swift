@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import FirebaseAuth
 
 protocol LoginScreenInterface: AnyObject {
     func configureVC()
@@ -311,17 +312,21 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         ])
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @objc func tappedSignIn() {
-        print("Giriş Yap Tapped")
+        if emailTextField.text.isEmailValid() && passwordTextField.text.isPasswordValid(passwordTextField.text!) {
+                        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { authData, authError in
+                            
+                            if authError != nil {
+                                self.alert(message: authError?.localizedDescription ?? "Error", title: "Error")
+                            }else {
+                                print("Giriş Başarılı...")
+                                self.navigationController?.pushViewController(HomeScreen(), animated: true)
+                            }
+                        }
+                    }else {
+                        alert(message: "Username veya Password Girilmemiş Olabilir Kontrol Ediniz.", title: "Error")
+                        
+                    }
     }
     @objc func tappedSignInWithGoogle() {
         print("Google ile giriş yap tapped")

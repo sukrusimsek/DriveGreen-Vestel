@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 // I'll change the page for Compositional Layout but firstly I created normal.
 protocol SignUpSecondScreenInterface: AnyObject {
     func configureVC()
@@ -327,6 +328,23 @@ extension SignUpSecondScreen: SignUpSecondScreenInterface, UITextFieldDelegate, 
     }
     @objc func tappedContinueButton() {
         print("tapped continue")
+       
+        if emailTextField.text.isEmailValid() && passwordTextField.text.isPasswordValid(passwordTextField.text!){
+                    Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { authData, authError in
+                        
+                        if authError != nil {
+                            
+                            self.alert(message: authError?.localizedDescription ?? "Error", title: "Error")
+                        }else {
+                            print("Kayıt işlemi Gerçekleştirildi...")
+                        }
+                    }
+                }else {
+                    alert(message: "Username veya Password Bilgilerini Kontrol Ediniz.", title: "Error")
+                }
+                Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { AuthData, AuthError in
+                    
+                }
         navigationController?.pushViewController(SignUpThirdScreen(), animated: true)
         
         let alertController = UIAlertController(title: "Geçiş Alert", message: "Aktivasyon maili gönderildi.", preferredStyle: .alert)

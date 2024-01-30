@@ -118,5 +118,6 @@ extension SignUpFourthScreen: SignUpFourthScreenInterface {
     }
     @objc func tappedUseAppButton() {
         print("tapped use app button")
+        navigationController?.pushViewController(HomeScreen(), animated: true)
     }
 }
