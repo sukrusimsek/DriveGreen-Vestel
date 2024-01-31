@@ -13,8 +13,8 @@ protocol HomeScreenInterface: AnyObject {
 class HomeScreen: UIViewController {
     private let viewModel = HomeViewModel()
     private let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.view = self

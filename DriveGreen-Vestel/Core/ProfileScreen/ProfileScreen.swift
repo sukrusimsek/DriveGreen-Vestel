@@ -1,18 +1,16 @@
 //
-//  SettingScreen.swift
+//  ProfileScreen.swift
 //  DriveGreen-Vestel
 //
 //  Created by Şükrü Şimşek on 31.01.2024.
 //
 
 import UIKit
-
-protocol SettingScreenInterface: AnyObject {
+protocol ProfileScreenInterface: AnyObject {
     func configureVC()
 }
-
-class SettingScreen: UIViewController {
-    private let viewModel = SettingViewModel()
+class ProfileScreen: UIViewController {
+    private let viewModel = ProfileViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.view = self
@@ -20,9 +18,8 @@ class SettingScreen: UIViewController {
         
     }
 }
-
-extension SettingScreen: SettingScreenInterface {
+extension ProfileScreen: ProfileScreenInterface {
     func configureVC() {
-        view.backgroundColor = .red
+        view.backgroundColor = .blue
     }
 }

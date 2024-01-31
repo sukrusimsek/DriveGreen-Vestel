@@ -140,11 +140,14 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
         } else if !passwordTextField.text.isPasswordValid(passwordTextField.text!) { //change to wrong pass
             signInButton.isEnabled = false
             signInButton.setTitleColor(.placeholderText, for: .normal)
-            signInButton.backgroundColor = .lightGray
             passwordTextField.textColor = .systemRed
             passwordTextField.addBottomBorder(height: 1,color: .systemRed)
             passwordTextField.withImage(direction: .Left, image: iconForLock ?? .actions, colorSeparator: .clear, colorBorder: .clear, tintColor: .systemRed)
-            
+            signInButton.applyGradient(colors: [.lightGray, .lightGray], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y: 1.0))
+            signInButton.layer.cornerRadius = 25
+            signInButton.layer.masksToBounds = true
+            //signInButton.backgroundColor = .lightGray
+
 
         } else if passwordTextField.text.isPasswordValid(passwordTextField.text!) { //change to true pass
             passwordTextField.textColor = .white
@@ -319,10 +322,25 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
                         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { authData, authError in
                             
                             if authError != nil {
-                                self.alert(message: authError?.localizedDescription ?? "Error", title: "Error")
+                                let errorCode = (authError! as NSError).code
+                                var errorMessage = "Username veya Password Girilmemiş Olabilir Kontrol Ediniz."
+                                switch errorCode {
+                                case AuthErrorCode.wrongPassword.rawValue:
+                                    errorMessage = "Yanlış şifre girdiniz. Tekrar deneyin."
+                                case AuthErrorCode.userNotFound.rawValue:
+                                    errorMessage = "Kullanıcı yok. Üye olun."
+                                default:
+                                    break
+                                }
+                                
+                                self.alert(message: errorMessage , title: "Error")
                             }else {
                                 print("Giriş Başarılı...")
                                 self.navigationController?.pushViewController(HomeScreen(), animated: true)
+                                self.tabBarController?.selectedIndex = 0
+                                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                                sceneDelegate?.showTabBarCont()
+
                             }
                         }
                     }else {
@@ -372,7 +390,7 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
     }
     @objc func tappedSignUp() {
         print("tapped sign up")
-        navigationController?.pushViewController(SettingScreen(), animated: true)
+        navigationController?.pushViewController(SignUpFirstScreen(), animated: true)
     }
 }
 
