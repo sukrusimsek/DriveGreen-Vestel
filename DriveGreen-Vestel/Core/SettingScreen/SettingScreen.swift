@@ -23,6 +23,16 @@ class SettingScreen: UIViewController {
 
 extension SettingScreen: SettingScreenInterface {
     func configureVC() {
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor(rgb: 0x444444)
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(rgb: 0x282828)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white,
+                                          .font: UIFont.systemFont(ofSize: 18, weight: .semibold)]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
     }
 }

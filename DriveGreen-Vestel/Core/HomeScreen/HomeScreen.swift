@@ -20,8 +20,10 @@ class HomeScreen: UIViewController {
     private let welcomeLabel = UILabel()
     private let labelSecond = UILabel()
     private let labelBottom = UILabel()
-    //private let addDeviceButton = UIButton()
-    private let iconForAdd = UIImage(systemName: "plus")
+    private let imageForButtonPlus = UIImageView(image: UIImage(systemName: "plus"))
+    private let buttonForAddDevice = UIButton(type: .system)
+    private let labelAddDevice = UILabel()
+
     
     
     override func viewDidLoad() {
@@ -34,6 +36,8 @@ class HomeScreen: UIViewController {
 }
 extension HomeScreen: HomeScreenInterface {
     func configureVC() {
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+        
         navigationItem.hidesBackButton = true
         backgroundImage.image = UIImage(named: "drivegreenback")
         backgroundImage.contentMode = .scaleAspectFill
@@ -42,7 +46,7 @@ extension HomeScreen: HomeScreenInterface {
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         view.insertSubview(overlayView, aboveSubview: backgroundImage)
         
-        title = ""
+        
     }
     func configureStackView() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -95,24 +99,34 @@ extension HomeScreen: HomeScreenInterface {
         
     }
     func configureAddDeviceButton() {
+        imageForButtonPlus.tintColor = UIColor(rgb: 0x8fc031)
+        imageForButtonPlus.frame = CGRect(x: 12, y: 12, width: 36, height: 36)
+        labelAddDevice.translatesAutoresizingMaskIntoConstraints = false
+        labelAddDevice.text = "Cihaz Ekle"
+        labelAddDevice.font = .systemFont(ofSize: 14, weight: .semibold)
+        labelAddDevice.textColor = .white
+        labelAddDevice.numberOfLines = 1
+        labelAddDevice.textAlignment = .center
         
-        
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .green
-        button.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 32), forImageIn: .normal)
-        button.applyGradient(colors: [UIColor.darkGray, UIColor.gray, UIColor.lightGray], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y: 1.0), locations: [0.0,0.2,0.7])
-        addBorderGradient(to: button, startColor: .lightGray, endColor: .lightText, lineWidth: 3.0, startPoint: .topCenter, endPoint: .bottomCenter)
-        button.addTarget(self, action: #selector(tappedAddDevice), for: .touchUpInside)
-        view.addSubview(button)
+        buttonForAddDevice.translatesAutoresizingMaskIntoConstraints = false
+        buttonForAddDevice.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        buttonForAddDevice.applyGradient(colors: [UIColor.darkGray, UIColor.gray, UIColor.lightGray], startPoint: CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint(x: 0.5, y: 1.0), locations: [0.0,0.5,0.9])
+        addBorderGradient(to: buttonForAddDevice, startColor: .lightGray, endColor: .lightText, lineWidth: 3.0, startPoint: .topCenter, endPoint: .bottomCenter)
+        buttonForAddDevice.addTarget(self, action: #selector(tappedAddDevice), for: .touchUpInside)
+        buttonForAddDevice.tintColor = .green
+        buttonForAddDevice.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 32), forImageIn: .normal)
+        view.addSubview(buttonForAddDevice)
+        buttonForAddDevice.addSubview(imageForButtonPlus)
+        view.addSubview(labelAddDevice)
         NSLayoutConstraint.activate([
-            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -40),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            button.widthAnchor.constraint(equalToConstant: 60),
-            button.heightAnchor.constraint(equalToConstant: 60),
+            buttonForAddDevice.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -40),
+            buttonForAddDevice.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            buttonForAddDevice.widthAnchor.constraint(equalToConstant: 60),
+            buttonForAddDevice.heightAnchor.constraint(equalToConstant: 60),
             
+            labelAddDevice.topAnchor.constraint(equalTo: buttonForAddDevice.bottomAnchor, constant: 5),
+            labelAddDevice.widthAnchor.constraint(equalToConstant: buttonForAddDevice.frame.width + 20),
+            labelAddDevice.trailingAnchor.constraint(equalTo: buttonForAddDevice.trailingAnchor, constant: 10),
         ])
     }
     @objc func tappedAddDevice() {

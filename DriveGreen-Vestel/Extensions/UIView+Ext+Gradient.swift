@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIButton {
+extension UIView {
     func applyGradient(colors: [UIColor], startPoint: CGPoint, endPoint: CGPoint, locations: [NSNumber]? = [0.0,0.7]) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds

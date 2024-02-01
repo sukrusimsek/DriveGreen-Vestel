@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: HomeScreen())
+        window?.rootViewController = UINavigationController(rootViewController: SignUpFourthScreen())
         window?.makeKeyAndVisible()
         
     }
@@ -41,9 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         vc1.tabBarItem.image = UIImage(systemName: "square.grid.2x2.fill")
         vc2.tabBarItem.image = UIImage(systemName: "wrench.adjustable.fill")
         vc3.tabBarItem.image = UIImage(systemName: "person.crop.circle")
-        tabBar.tabBar.tintColor = UIColor(rgb: 0x8fc031)
+        tabBar.tabBar.tintColor = UIColor(rgb: 0x8cd347)
         tabBar.tabBar.unselectedItemTintColor = .lightText
-        tabBar.tabBar.backgroundColor = UIColor(rgb: 0x444444)
+        tabBar.tabBar.backgroundColor = UIColor(rgb: 0x282828)
+        
         vc1.title = "Ana Sayfa"
         vc2.title = "Ayarlar"
         vc3.title = "Profil"
