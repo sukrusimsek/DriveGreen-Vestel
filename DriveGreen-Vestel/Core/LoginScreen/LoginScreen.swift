@@ -376,6 +376,8 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
                                         
                                         print("error")
                                     }else {
+                                        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                                        sceneDelegate?.showTabBarCont()
                                         self.navigationController?.pushViewController(HomeScreen(), animated: true)
                                         
                                     }

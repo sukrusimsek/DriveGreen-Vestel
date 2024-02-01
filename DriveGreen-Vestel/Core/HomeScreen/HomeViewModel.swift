@@ -18,5 +18,8 @@ final class HomeViewModel {
 extension HomeViewModel: HomeViewModelInterface {
     func viewDidLoad() {
         view?.configureVC()
+        view?.configureStackView()
+        view?.configureLabels()
+        view?.configureAddDeviceButton()
     }
 }

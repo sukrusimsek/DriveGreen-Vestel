@@ -17,6 +17,7 @@
 		8D08011D2B6A908700975C6A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08011C2B6A908700975C6A /* SettingViewModel.swift */; };
 		8D08011F2B6A91BD00975C6A /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08011E2B6A91BD00975C6A /* ProfileScreen.swift */; };
 		8D0801212B6A91D000975C6A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0801202B6A91D000975C6A /* ProfileViewModel.swift */; };
+		8D0801232B6B0E6400975C6A /* CGPoint+Ext+BorderGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0801222B6B0E6400975C6A /* CGPoint+Ext+BorderGradient.swift */; };
 		8D6160492B5D2EA800D4C219 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6160482B5D2EA800D4C219 /* AppDelegate.swift */; };
 		8D61604B2B5D2EA800D4C219 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61604A2B5D2EA800D4C219 /* SceneDelegate.swift */; };
 		8D61604D2B5D2EA800D4C219 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61604C2B5D2EA800D4C219 /* LoginScreen.swift */; };
@@ -77,6 +78,7 @@
 		8D08011C2B6A908700975C6A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		8D08011E2B6A91BD00975C6A /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		8D0801202B6A91D000975C6A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		8D0801222B6B0E6400975C6A /* CGPoint+Ext+BorderGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Ext+BorderGradient.swift"; sourceTree = "<group>"; };
 		8D6160452B5D2EA800D4C219 /* DriveGreen-Vestel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DriveGreen-Vestel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D6160482B5D2EA800D4C219 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D61604A2B5D2EA800D4C219 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				8D6160AD2B62F2B600D4C219 /* UIView+Ext+Pages.swift */,
 				8D0801052B697F3400975C6A /* UIView+Ext+Gradient.swift */,
 				8D0801072B69935700975C6A /* UIViewController+Ext+Alert.swift */,
+				8D0801222B6B0E6400975C6A /* CGPoint+Ext+BorderGradient.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				8D6160B12B657E2800D4C219 /* SignUpSecondViewModel.swift in Sources */,
 				8D08011D2B6A908700975C6A /* SettingViewModel.swift in Sources */,
 				8D08010B2B6995C700975C6A /* HomeScreen.swift in Sources */,
+				8D0801232B6B0E6400975C6A /* CGPoint+Ext+BorderGradient.swift in Sources */,
 				8D6160B82B66E42300D4C219 /* SignUpThirdViewModel.swift in Sources */,
 				8D0801212B6A91D000975C6A /* ProfileViewModel.swift in Sources */,
 				8D6160AE2B62F2B600D4C219 /* UIView+Ext+Pages.swift in Sources */,
