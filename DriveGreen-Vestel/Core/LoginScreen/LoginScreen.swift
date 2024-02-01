@@ -357,7 +357,18 @@ extension LoginScreen: LoginScreenInterface, UITextFieldDelegate {
                 GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
                     
                     if let error = error {
-                        // ...
+                        let errorCode = (error as NSError).code
+                        var errorMessage = "Username veya Password Girilmemiş Olabilir Kontrol Ediniz."
+                        switch errorCode {
+                        case AuthErrorCode.wrongPassword.rawValue:
+                            errorMessage = "Yanlış şifre girdiniz. Tekrar deneyin."
+                        case AuthErrorCode.userNotFound.rawValue:
+                            errorMessage = "Kullanıcı yok. Üye olun."
+                        default:
+                            break
+                        }
+                        
+                        self.alert(message: errorMessage , title: "Error")
                         return
                     }
                     
